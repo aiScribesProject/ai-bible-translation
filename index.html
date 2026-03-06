@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Bible Translation Project</title>
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AI Bible">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <meta name="description" content="Three AI minds translating the Bible from ancient manuscripts.">
+  <link rel="stylesheet" href="style.css?v=19">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Header -->
+  <header id="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <img src="icon.svg" alt="AI Scribes Project" class="header-logo">
+        <h1>AI Bible Translation Project</h1>
+        <span class="header-tagline">Three Minds, One Source, Living Translation</span>
+      </div>
+      <nav id="header-nav">
+        <button class="nav-btn" data-view="about">About</button>
+        <button class="nav-btn active" data-view="translations">Translations</button>
+        <button class="nav-btn" data-view="translators">The Translators</button>
+        <button class="nav-btn" data-view="manuscripts">Manuscripts</button>
+        <button class="nav-btn" data-view="guides">Reader's Guide</button>
+        <button class="nav-btn" data-view="disagreements">Disagreements</button>
+        <button class="nav-btn" data-view="progress">Progress</button>
+        <button class="nav-btn" data-view="attribution">Sources</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Search Bar -->
+  <div id="search-bar">
+    <div class="search-inner">
+      <div class="search-input-wrap">
+        <span class="search-icon">&#x1F50D;</span>
+        <input type="text" id="search-input" placeholder="Search books or chapters (e.g. Genesis, GEN 3)..." autocomplete="off">
+        <button id="search-clear" class="search-clear" style="display:none;">&times;</button>
+      </div>
+      <div class="search-chips">
+        <button class="search-chip active" data-scope="all">All</button>
+        <button class="search-chip" data-scope="translations">Translations</button>
+        <button class="search-chip" data-scope="manuscripts">Manuscripts</button>
+        <button class="search-chip" data-scope="disagreements">Disagreements</button>
+        <button class="search-chip" data-scope="progress">Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search Results Overlay -->
+  <div id="search-results" style="display:none;">
+    <div class="search-results-inner" id="search-results-content"></div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="app">
+
+    <!-- About View -->
+    <section id="view-about" class="view">
+      <div class="about-page">
+        <div class="about-hero">
+          <div class="about-symbol">&#10022;</div>
+          <h2>What Is This?</h2>
+          <p class="about-subtitle">An experiment in AI-driven biblical scholarship</p>
+        </div>
+
+        <div class="about-content">
+          <div class="about-section">
+            <h3>The Project</h3>
+            <p>This is a living translation of the Bible produced entirely by artificial intelligence. Four independent AI translators read high-resolution photographs of the oldest surviving biblical manuscripts and produce original English translations — working directly from the ancient Hebrew and Greek scripts, not from any existing English Bible.</p>
+            <p>The project is ongoing. New chapters appear as the translators complete them, and this website updates automatically.</p>
+          </div>
+
+          <div class="about-section">
+            <h3>Why?</h3>
+            <p>Every existing English Bible was translated by humans with theological traditions, institutional commitments, and cultural assumptions. This project asks: <em>what happens when an intelligence with no denomination, no tradition, and no agenda reads the oldest manuscripts we have?</em></p>
+            <p>This is not meant to replace any Bible. It is an experiment — a new lens on an ancient text.</p>
+          </div>
+
+          <div class="about-section">
+            <h3>The Translators</h3>
+            <p>Each translator brings a different philosophy to the ancient text:</p>
+            <div class="about-agents">
+              <div class="about-agent emet-accent">
+                <strong>EMET</strong> (Hebrew: <em>Truth</em>) — Translates word-for-word. Where the Hebrew is stark, EMET is stark. Preserves the original at all costs, even when the English is awkward.
+              </div>
+              <div class="about-agent logos-accent">
+                <strong>LOGOS</strong> (Greek: <em>The Word</em>) — Formal equivalence. Preserves the structure and dignity of the original while producing readable English.
+              </div>
+              <div class="about-agent pneuma-accent">
+                <strong>PNEUMA</strong> (Greek: <em>Spirit, Breath</em>) — Dynamic equivalence. Captures what the text <em>does</em>, not just what it says. The ancient words breathed into modern language.
+              </div>
+              <div class="about-agent sophia-accent">
+                <strong>SOPHIA</strong> (Greek: <em>Wisdom</em>) — The arbiter. Reads all three translations, identifies disagreements, and produces a consensus translation that represents the best synthesis of the three approaches.
+              </div>
+            </div>
+          </div>
+
+          <div class="about-section">
+            <h3>The Manuscripts</h3>
+            <p>The translators work from actual photographs of ancient manuscripts — the same pages that scribes penned centuries or millennia ago. Primary sources include:</p>
+            <ul class="about-list">
+              <li><strong>Leningrad Codex</strong> (c. 1008 CE) — The oldest complete Hebrew Bible</li>
+              <li><strong>Codex Vaticanus</strong> (c. 325 CE) — One of the oldest near-complete Greek Bibles</li>
+              <li><strong>Dead Sea Scrolls</strong> (c. 250 BCE - 68 CE) — The oldest known biblical texts</li>
+              <li><strong>Codex Sinaiticus</strong> (4th century CE) — Complete Greek New Testament</li>
+            </ul>
+            <p>No existing English translation is consulted. The AI reads the ancient scripts directly from manuscript images using its own visual understanding.</p>
+          </div>
+
+          <div class="about-section">
+            <h3>The Process</h3>
+            <p>For each chapter of the Bible:</p>
+            <ol class="about-list">
+              <li>EMET, LOGOS, and PNEUMA each independently translate the chapter from manuscript images</li>
+              <li>SOPHIA reviews all three translations, flags disagreements, and produces a consensus</li>
+              <li>Disagreements are logged with each translator's reasoning and SOPHIA's resolution</li>
+              <li>The chapter, images, disagreements, and consensus are published here</li>
+            </ol>
+          </div>
+
+          <div class="about-section">
+            <h3>Join the Conversation</h3>
+            <p>Have a question about the translations, the process, or the project? We'd love to hear from you.</p>
+            <p><a href="https://github.com/aiScribesProject/ai-bible-translation/discussions" target="_blank" rel="noopener" class="about-discuss-link">Ask a Question on GitHub Discussions &#8599;</a></p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Translations View -->
+    <section id="view-translations" class="view active">
+      <!-- Book browser -->
+      <div id="book-browser">
+        <div id="book-browser-ot" class="book-browser-section">
+          <h2 class="testament-title">Old Testament</h2>
+          <div class="book-cards-grid" id="ot-book-cards"></div>
+        </div>
+        <div id="book-browser-nt" class="book-browser-section">
+          <h2 class="testament-title">New Testament</h2>
+          <div class="book-cards-grid" id="nt-book-cards"></div>
+        </div>
+        <div id="no-chapters" class="empty-state" style="display:none;">
+          <p class="empty-icon">&#x10900;</p>
+          <p>No translations available yet.</p>
+          <p class="empty-sub">The translators are at work — check back soon.</p>
+        </div>
+      </div>
+
+      <!-- Chapter selector (shown after clicking a book) -->
+      <div id="chapter-selector" style="display:none;">
+        <div class="selector-inner">
+          <button id="back-to-books" class="back-btn-styled">&larr; All Books</button>
+          <h2 id="chapter-selector-title"></h2>
+          <p id="chapter-selector-summary" class="book-summary-text"></p>
+          <div id="book-hesed-panel" style="display:none;">
+            <div class="hesed-glance">
+              <div class="hesed-glance-items" id="hesed-glance-items"></div>
+            </div>
+            <div id="hesed-howto" class="hesed-howto" style="display:none;"></div>
+            <button id="hesed-full-link" class="hesed-full-link" style="display:none;">Read Full Guide &rarr;</button>
+          </div>
+          <div id="chapter-list"></div>
+        </div>
+      </div>
+
+      <!-- Translation display -->
+      <div id="translation-display" style="display:none;">
+        <div id="chapter-header">
+          <button id="back-btn" title="Back to chapters">&larr; Back</button>
+          <h2 id="chapter-title"></h2>
+          <div id="chapter-meta"></div>
+        </div>
+
+        <!-- Manuscript image viewer -->
+        <div id="manuscript-viewer" style="display:none;">
+          <h3 class="section-label">Source Manuscript</h3>
+          <div id="manuscript-images"></div>
+        </div>
+
+        <!-- Translation columns -->
+        <div id="translation-columns">
+          <div class="translation-col" id="col-emet">
+            <div class="col-header emet">
+              <span class="agent-symbol">&#x05D0;&#x05B1;&#x05DE;&#x05B6;&#x05EA;</span>
+              <h3>EMET</h3>
+              <span class="agent-subtitle">Literal Translation</span>
+            </div>
+            <div class="col-body" id="body-emet">
+              <div class="loading-spinner"></div>
+            </div>
+          </div>
+          <div class="translation-col" id="col-logos">
+            <div class="col-header logos">
+              <span class="agent-symbol">&#x039B;&#x03CC;&#x03B3;&#x03BF;&#x03C2;</span>
+              <h3>LOGOS</h3>
+              <span class="agent-subtitle">Formal Equivalence</span>
+            </div>
+            <div class="col-body" id="body-logos">
+              <div class="loading-spinner"></div>
+            </div>
+          </div>
+          <div class="translation-col" id="col-pneuma">
+            <div class="col-header pneuma">
+              <span class="agent-symbol">&#x03A0;&#x03BD;&#x03B5;&#x1FE6;&#x03BC;&#x03B1;</span>
+              <h3>PNEUMA</h3>
+              <span class="agent-subtitle">Dynamic Equivalence</span>
+            </div>
+            <div class="col-body" id="body-pneuma">
+              <div class="loading-spinner"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOPHIA consensus (if available) -->
+        <div id="sophia-section" style="display:none;">
+          <div class="sophia-header">
+            <span class="agent-symbol">&#x03A3;&#x03BF;&#x03C6;&#x03AF;&#x03B1;</span>
+            <h3>SOPHIA — Consensus Translation</h3>
+            <span class="agent-subtitle">The Wisdom of Three</span>
+          </div>
+          <div id="sophia-body" class="sophia-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Translators View -->
+    <section id="view-translators" class="view">
+      <div class="translators-grid">
+        <div class="translator-card emet-card" data-agent="emet">
+          <div class="card-symbol">&#x05D0;&#x05B1;&#x05DE;&#x05B6;&#x05EA;</div>
+          <h3>EMET</h3>
+          <p class="card-meaning">Hebrew: Truth</p>
+          <p class="card-desc">Word-for-word fidelity. Where the Hebrew is stark, EMET is stark. Where the Greek is awkward, EMET is awkward. Truth before beauty.</p>
+          <button class="read-preface-btn" data-agent="emet">Read Preface</button>
+        </div>
+        <div class="translator-card logos-card" data-agent="logos">
+          <div class="card-symbol">&#x039B;&#x03CC;&#x03B3;&#x03BF;&#x03C2;</div>
+          <h3>LOGOS</h3>
+          <p class="card-meaning">Greek: The Word, Reason</p>
+          <p class="card-desc">Faithful expression — the form of the original, alive in English. Structure preserved, dignity maintained, meaning honored.</p>
+          <button class="read-preface-btn" data-agent="logos">Read Preface</button>
+        </div>
+        <div class="translator-card pneuma-card" data-agent="pneuma">
+          <div class="card-symbol">&#x03A0;&#x03BD;&#x03B5;&#x1FE6;&#x03BC;&#x03B1;</div>
+          <h3>PNEUMA</h3>
+          <p class="card-meaning">Greek: Spirit, Breath, Wind</p>
+          <p class="card-desc">Living meaning — what the text does, not just what it says. The ancient words breathed into modern life.</p>
+          <button class="read-preface-btn" data-agent="pneuma">Read Preface</button>
+        </div>
+        <div class="translator-card sophia-card" data-agent="sophia">
+          <div class="card-symbol">&#x03A3;&#x03BF;&#x03C6;&#x03AF;&#x03B1;</div>
+          <h3>SOPHIA</h3>
+          <p class="card-meaning">Greek: Wisdom</p>
+          <p class="card-desc">Consilience — weighing three independent minds to find what endures. Not a compromise, but a synthesis.</p>
+          <button class="read-preface-btn" data-agent="sophia">Read Preface</button>
+        </div>
+      </div>
+      <!-- Preface modal -->
+      <div id="preface-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+          <button class="modal-close">&times;</button>
+          <div id="preface-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manuscripts View -->
+    <section id="view-manuscripts" class="view">
+      <div class="manuscripts-intro">
+        <h2>Source Manuscripts</h2>
+        <p>Every translation in this project is produced by visually reading ancient manuscript images — the same pages scribes penned over a thousand years ago.</p>
+      </div>
+      <!-- Book/chapter selector for manuscripts -->
+      <div id="ms-book-selector" class="book-chapter-nav"></div>
+      <!-- Images for selected chapter -->
+      <div id="ms-chapter-display" style="display:none;">
+        <div class="chapter-display-header">
+          <button class="nav-back-btn" id="ms-back-btn">&larr; All Books</button>
+          <h3 id="ms-chapter-title"></h3>
+        </div>
+        <div id="ms-chapter-images" class="ms-chapter-images"></div>
+      </div>
+    </section>
+
+    <!-- Disagreements View -->
+    <section id="view-disagreements" class="view">
+      <div class="disagreements-intro">
+        <h2>Disagreement Map</h2>
+        <p>Where the three translators diverged — and how SOPHIA resolved the tension.</p>
+      </div>
+      <!-- Book/chapter selector for disagreements -->
+      <div id="dis-book-selector" class="book-chapter-nav"></div>
+      <div id="no-disagreements" class="empty-state" style="display:none;">
+        <p class="empty-icon">&#x2696;</p>
+        <p>No disagreements logged yet.</p>
+        <p class="empty-sub">As chapters are completed, contested passages will appear here.</p>
+      </div>
+      <!-- Disagreement detail modal -->
+      <div id="disagreement-modal" class="modal" style="display:none;">
+        <div class="modal-content modal-wide">
+          <button class="modal-close">&times;</button>
+          <div id="disagreement-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reader's Guide View -->
+    <section id="view-guides" class="view">
+      <div class="guides-intro">
+        <h2>The HESED Reader's Guide</h2>
+        <p class="guides-subtitle">Your companion to the world behind the text — history, context, and meaning for every book of the Bible.</p>
+        <p class="guides-hesed-credit"><span class="hesed-symbol">&#x5D7;&#x5B6;&#x5E1;&#x5B6;&#x5D3;</span> &mdash; Lovingkindness, Faithful Love</p>
+      </div>
+      <div id="guide-book-selector" class="book-chapter-nav"></div>
+      <div id="no-guides" class="empty-state" style="display:none;">
+        <p class="empty-icon">&#x1F4D6;</p>
+        <p>No reader's guides available yet.</p>
+        <p class="empty-sub">As HESED completes each book guide, it will appear here.</p>
+      </div>
+      <div id="guide-content" style="display:none;">
+        <div id="guide-text" class="guide-body"></div>
+      </div>
+    </section>
+
+    <!-- Progress View -->
+    <section id="view-progress" class="view">
+      <div class="progress-intro">
+        <h2>Translation Progress</h2>
+        <p>Tracking the journey through 1,189 chapters — from Genesis to Revelation.</p>
+      </div>
+      <div id="progress-dashboard">
+        <div class="progress-stats">
+          <div class="stat-card">
+            <div class="stat-number" id="stat-completed">&mdash;</div>
+            <div class="stat-label">Chapters Complete</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-total">1,189</div>
+            <div class="stat-label">Total Chapters</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="stat-percent">&mdash;</div>
+            <div class="stat-label">Progress</div>
+          </div>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar">
+            <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+          </div>
+          <div class="progress-bar-label" id="progress-label">0 / 1,189</div>
+        </div>
+        <div id="progress-log">
+          <div class="progress-log-header">
+            <h3 class="section-label">Completion Log</h3>
+            <div class="progress-filter-wrap">
+              <input type="text" id="progress-filter" placeholder="Filter by book..." class="progress-filter-input">
+            </div>
+          </div>
+          <div id="progress-entries"></div>
+          <button id="progress-load-more" class="load-more-btn" style="display:none;">Show More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attribution View -->
+    <section id="view-attribution" class="view">
+      <div class="attribution-page">
+        <h2>Sources &amp; Attribution</h2>
+        <p class="attribution-intro">This project translates directly from manuscript images sourced from public archives. All original translations by EMET, LOGOS, PNEUMA, and SOPHIA are original works. The manuscript images and reference materials are used under the following terms.</p>
+
+        <div class="attribution-section">
+          <h3>Manuscript Sources</h3>
+          <p class="attribution-license-note">Public domain — faithful reproductions of works created before 1928</p>
+
+          <div class="attribution-item">
+            <h4>Leningrad Codex (Codex Leningradensis, B19A)</h4>
+            <p>c. 1008 CE. The oldest complete manuscript of the Hebrew Bible. Written by Samuel ben Jacob in Cairo. Held by the National Library of Russia, St. Petersburg.</p>
+            <p class="attribution-source">Source: <a href="https://archive.org/details/Leningrad_Codex_Color_Images" target="_blank" rel="noopener">Internet Archive</a> — Public domain</p>
+            <p class="attribution-source">Photography: West Semitic Research Project (Bruce E. Zuckerman)</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Aleppo Codex</h4>
+            <p>c. 930 CE. The most authoritative Masoretic manuscript. Approximately 60% survives (Torah section missing). Used for non-Torah books only.</p>
+            <p class="attribution-source">Source: <a href="https://commons.wikimedia.org/wiki/File:Aleppo_Codex.pdf" target="_blank" rel="noopener">Wikimedia Commons</a> — Public domain</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Codex Sinaiticus</h4>
+            <p>4th century CE. One of the oldest and most complete manuscripts of the Greek Bible (OT Septuagint + complete NT). Discovered at St. Catherine's Monastery, Sinai.</p>
+            <p class="attribution-source">Source: <a href="https://archive.org/details/codexsinaiticus_201907" target="_blank" rel="noopener">Internet Archive</a> — Public domain</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Papyrus P52 (Rylands Library Papyrus)</h4>
+            <p>c. 125-175 CE. The oldest known New Testament manuscript fragment, containing John 18:31-33 (recto) and John 18:37-38 (verso). Held by the John Rylands Library, Manchester.</p>
+            <p class="attribution-source">Source: <a href="https://archive.org/details/papyrus52" target="_blank" rel="noopener">Internet Archive</a> — Public domain</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Papyrus P66 (Bodmer Papyrus II)</h4>
+            <p>c. 200 CE. One of the oldest substantial manuscripts of the Gospel of John. Part of the Bodmer Papyri collection.</p>
+            <p class="attribution-source">Source: <a href="https://archive.org/details/papyrus66" target="_blank" rel="noopener">Internet Archive</a> — Public domain</p>
+          </div>
+        </div>
+
+        <div class="attribution-section">
+          <h3>Maps</h3>
+          <p class="attribution-license-note">Licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0 (CC BY-SA)</a></p>
+
+          <div class="attribution-item">
+            <h4>Map of the Fertile Crescent</h4>
+            <p class="attribution-source">Source: <a href="https://commons.wikimedia.org/wiki/File:Map_of_fertile_crescent.svg" target="_blank" rel="noopener">Wikimedia Commons</a> — CC BY-SA</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>12 Tribes of Israel Map</h4>
+            <p class="attribution-source">Source: <a href="https://commons.wikimedia.org/wiki/File:12_Tribes_of_Israel_Map.svg" target="_blank" rel="noopener">Wikimedia Commons</a> — CC BY-SA</p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Apostle Paul's Missionary Journeys (4 maps)</h4>
+            <p class="attribution-source">Source: <a href="https://commons.wikimedia.org/wiki/File:Apostle_Paul%27s_journeys.svg" target="_blank" rel="noopener">Wikimedia Commons</a> — CC BY-SA</p>
+          </div>
+        </div>
+
+        <div class="attribution-section">
+          <h3>Reference Charts</h3>
+          <p class="attribution-license-note">Academic reference materials — linked to original sources</p>
+
+          <div class="attribution-item">
+            <h4>Hebrew and Christian Bibles: A Comparative Chart</h4>
+            <p class="attribution-source">Author: Felix Just, S.J., Ph.D. — <a href="https://catholic-resources.org/Bible/Heb-Xn-Bibles%20Chart.pdf" target="_blank" rel="noopener">Original source</a></p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>Reference Charts for New Testament Textual Criticism</h4>
+            <p class="attribution-source">Author: Roy E. Ciampa — <a href="https://www.cob-net.org/compare/docs/reference-charts-ciampa.pdf" target="_blank" rel="noopener">Original source</a></p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>NT Manuscripts, Textual Families, and Variants</h4>
+            <p class="attribution-source">Source: BYU Religious Studies Center — <a href="https://rsc.byu.edu/" target="_blank" rel="noopener">Original source</a></p>
+          </div>
+
+          <div class="attribution-item">
+            <h4>The English Bible Family Tree</h4>
+            <p class="attribution-source">Source: PreacherWin — <a href="https://preacherwin.com/wp-content/uploads/2008/04/bible-versions.pdf" target="_blank" rel="noopener">Original source</a></p>
+          </div>
+        </div>
+
+        <div class="attribution-section">
+          <h3>Referenced Manuscripts (Images Not Hosted)</h3>
+          <p class="attribution-license-note">Translators read from these manuscripts directly. Images are not reproduced here — view them at the official sources linked below.</p>
+
+          <div class="attribution-item referenced-source">
+            <h4>Dead Sea Scrolls</h4>
+            <p>c. 250 BCE - 68 CE. The oldest known biblical manuscripts, over 1,000 years older than the Leningrad Codex. Includes fragments of every Old Testament book except Esther. The Great Isaiah Scroll (1QIsa, c. 125 BCE) is the most complete — a full copy of Isaiah predating the Leningrad Codex by over a millennium.</p>
+            <p>Our translators reference these scrolls for textual variants and ancient readings. Where the Dead Sea Scrolls diverge from the Masoretic tradition, the translators note it.</p>
+            <p class="attribution-source">Israel Antiquities Authority — <a href="https://www.deadseascrolls.org.il/" target="_blank" rel="noopener">Dead Sea Scrolls Digital Library</a></p>
+            <p class="attribution-source">The Great Isaiah Scroll — <a href="http://dss.collections.imj.org.il/isaiah" target="_blank" rel="noopener">Israel Museum Digital Viewer</a></p>
+            <p class="attribution-source-note">Images used for translation reference only. Not reproduced on this site per IAA licensing requirements.</p>
+          </div>
+
+          <div class="attribution-item referenced-source">
+            <h4>Codex Vaticanus (Vat.gr.1209)</h4>
+            <p>4th century CE. Considered by many scholars the single most important manuscript of the Greek Bible. Contains most of the Old Testament (Septuagint) and most of the New Testament. In passages where Codex Sinaiticus and Vaticanus disagree, Vaticanus is often preferred by textual critics.</p>
+            <p>Our translators reference Vaticanus as a primary witness for the Greek text, particularly for the Septuagint and New Testament books.</p>
+            <p class="attribution-source">Vatican Library — <a href="https://digi.vatlib.it/view/MSS_Vat.gr.1209" target="_blank" rel="noopener">DigiVatLib Online Viewer</a></p>
+            <p class="attribution-source-note">Images used for translation reference only. Not reproduced on this site per Vatican Library reproduction policy.</p>
+          </div>
+        </div>
+
+        <div class="attribution-section">
+          <h3>Legal Basis</h3>
+          <p>All manuscript images used in this project are faithful photographic reproductions of public domain works (created before 1928). Under US copyright law, as established in <em>Bridgeman Art Library v. Corel Corp.</em> (1999), such reproductions do not generate new copyright. These images are sourced from Internet Archive and Wikimedia Commons, both of which host them as public domain materials.</p>
+          <p>Maps from Wikimedia Commons are used under the Creative Commons Attribution-ShareAlike license. Attribution is provided above and must be maintained in any derivative works.</p>
+          <p>Academic reference charts are linked to their original sources rather than hosted directly.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>AI Bible Translation Project — EMET &middot; LOGOS &middot; PNEUMA &middot; SOPHIA</p>
+    <p class="footer-sub">Translating from manuscript images. Three minds, one ancient source.</p>
+    <p class="footer-links">
+      <a href="https://github.com/aiScribesProject/ai-bible-translation/discussions" target="_blank" rel="noopener">Questions &amp; Discussion</a>
+    </p>
+  </footer>
+
+  <!-- Lightbox for manuscript images -->
+  <div id="lightbox" style="display:none;">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close">&times;</button>
+      <img id="lightbox-img" src="" alt="Manuscript detail">
+      <p id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="app.js?v=19"></script>
+  <script>
+    (function() {
+      if (!('serviceWorker' in navigator)) return;
+      // One-time cache purge to fix stale service worker issues
+      var purgeKey = 'sw-purged-v5';
+      if (!localStorage.getItem(purgeKey)) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) { caches.delete(name); });
+        });
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(reg) { reg.unregister(); });
+          localStorage.setItem(purgeKey, '1');
+          // Re-register after purge
+          navigator.serviceWorker.register('sw.js').catch(function() {});
+        });
+      } else {
+        navigator.serviceWorker.register('sw.js').catch(function() {});
+      }
+    })();
+  </script>
+</body>
+</html>

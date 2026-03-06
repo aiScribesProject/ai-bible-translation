@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="42%" r="35%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="30%" stop-color="#e8c44a" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#e8c44a" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#0a0a0f" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ray-emet" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ray-logos" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#6ba3d6" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#6ba3d6" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ray-pneuma" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a67bc5" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a67bc5" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="ray-sophia" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8c44a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#e8c44a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="parchment" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d4c5a0" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#c9a84c" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#d4c5a0" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="512" height="512" rx="80" fill="#0a0a0f"/>
+
+  <!-- Four converging light rays from corners -->
+  <line x1="40" y1="460" x2="240" y2="270" stroke="url(#ray-emet)" stroke-width="3.5" opacity="0.6"/>
+  <line x1="472" y1="460" x2="272" y2="270" stroke="url(#ray-logos)" stroke-width="3.5" opacity="0.6"/>
+  <line x1="40" y1="52" x2="240" y2="242" stroke="url(#ray-pneuma)" stroke-width="3.5" opacity="0.6"/>
+  <line x1="472" y1="52" x2="272" y2="242" stroke="url(#ray-sophia)" stroke-width="3.5" opacity="0.6"/>
+
+  <!-- Wider subtle rays -->
+  <line x1="60" y1="470" x2="245" y2="275" stroke="#c9a84c" stroke-width="14" opacity="0.06"/>
+  <line x1="452" y1="470" x2="267" y2="275" stroke="#6ba3d6" stroke-width="14" opacity="0.06"/>
+  <line x1="60" y1="42" x2="245" y2="237" stroke="#a67bc5" stroke-width="14" opacity="0.06"/>
+  <line x1="452" y1="42" x2="267" y2="237" stroke="#e8c44a" stroke-width="14" opacity="0.06"/>
+
+  <!-- Central glow -->
+  <circle cx="256" cy="256" r="160" fill="url(#glow)"/>
+
+  <!-- Scroll shape -->
+  <ellipse cx="108" cy="256" rx="14" ry="115" fill="#1a1a24" stroke="#c9a84c" stroke-width="1.5" opacity="0.8"/>
+  <ellipse cx="108" cy="256" rx="7" ry="110" fill="#0a0a0f" opacity="0.5"/>
+  <ellipse cx="404" cy="256" rx="14" ry="115" fill="#1a1a24" stroke="#c9a84c" stroke-width="1.5" opacity="0.8"/>
+  <ellipse cx="404" cy="256" rx="7" ry="110" fill="#0a0a0f" opacity="0.5"/>
+  <rect x="122" y="141" width="268" height="230" rx="4" fill="url(#parchment)" stroke="#c9a84c" stroke-width="1.2" opacity="0.9"/>
+
+  <!-- Manuscript text lines -->
+  <g opacity="0.35" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round">
+    <path d="M355,175 h-8 m-4,0 h-12 m-4,0 h-6 m-4,0 h-10 m-4,0 h-8"/>
+    <path d="M355,175 v6 m-12,0 v-8 m-20,2 v6 m-14,-2 v-6"/>
+    <path d="M355,195 h-10 m-4,0 h-8 m-4,0 h-14 m-4,0 h-6 m-4,0 h-10"/>
+    <path d="M335,195 v6 m-14,-2 v-6 m-22,2 v8 m-10,-4 v-6"/>
+    <path d="M355,215 h-6 m-4,0 h-10 m-4,0 h-8 m-4,0 h-12 m-4,0 h-8"/>
+    <path d="M339,215 v-6 m-10,2 v6 m-16,-2 v-8 m-18,4 v6"/>
+    <path d="M355,235 h-12 m-4,0 h-6 m-4,0 h-10 m-4,0 h-8 m-4,0 h-6"/>
+    <path d="M333,235 v8 m-10,-4 v-6 m-18,2 v6 m-12,-2 v-8"/>
+    <path d="M355,255 h-8 m-4,0 h-10 m-4,0 h-6 m-4,0 h-14 m-4,0 h-6"/>
+    <path d="M337,255 v-6 m-14,2 v8 m-14,-4 v-6 m-16,4 v6"/>
+    <path d="M355,275 h-10 m-4,0 h-12 m-4,0 h-8 m-4,0 h-6 m-4,0 h-10"/>
+    <path d="M335,275 v6 m-16,-2 v-6 m-16,4 v8 m-12,-4 v-6"/>
+    <path d="M355,295 h-6 m-4,0 h-8 m-4,0 h-10 m-4,0 h-12 m-4,0 h-8"/>
+    <path d="M339,295 v-8 m-10,4 v6 m-18,-2 v-6 m-14,4 v8"/>
+    <path d="M355,315 h-14 m-4,0 h-6 m-4,0 h-8 m-4,0 h-10 m-4,0 h-6"/>
+    <path d="M331,315 v6 m-10,-4 v-6 m-16,2 v8 m-18,-4 v-6"/>
+    <path d="M355,335 h-8 m-4,0 h-10 m-4,0 h-14 m-4,0 h-6 m-4,0 h-8"/>
+  </g>
+
+  <!-- Left side text lines -->
+  <g opacity="0.35" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round">
+    <path d="M150,175 h8 m4,0 h12 m4,0 h6 m4,0 h10"/>
+    <path d="M150,195 h10 m4,0 h8 m4,0 h14 m4,0 h6"/>
+    <path d="M150,215 h6 m4,0 h10 m4,0 h8 m4,0 h12"/>
+    <path d="M150,235 h12 m4,0 h6 m4,0 h10 m4,0 h8"/>
+    <path d="M150,255 h8 m4,0 h10 m4,0 h6 m4,0 h14"/>
+    <path d="M150,275 h10 m4,0 h12 m4,0 h8 m4,0 h6"/>
+    <path d="M150,295 h6 m4,0 h8 m4,0 h10 m4,0 h12"/>
+    <path d="M150,315 h14 m4,0 h6 m4,0 h8 m4,0 h10"/>
+    <path d="M150,335 h8 m4,0 h10 m4,0 h14 m4,0 h6"/>
+  </g>
+
+  <!-- Bright center point -->
+  <circle cx="256" cy="256" r="10" fill="#fff" opacity="0.7"/>
+  <circle cx="256" cy="256" r="5" fill="#fff" opacity="0.95"/>
+
+  <!-- Four agent dots at corners -->
+  <circle cx="52" cy="456" r="7" fill="#c9a84c" opacity="0.7"/>
+  <circle cx="460" cy="456" r="7" fill="#6ba3d6" opacity="0.7"/>
+  <circle cx="52" cy="56" r="7" fill="#a67bc5" opacity="0.7"/>
+  <circle cx="460" cy="56" r="7" fill="#e8c44a" opacity="0.7"/>
+</svg>
