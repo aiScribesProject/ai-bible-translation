@@ -670,16 +670,16 @@
       const superRe = /^([⁰¹²³⁴⁵⁶⁷⁸⁹]+)\s+(.*)/;
       function decodeSuperscript(s) { return s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, c => superscriptMap[c]); }
 
-      const hasVerse = line.match(/\*\*(\d+(?::\d+)?)\*\*/);
+      const hasVerse = line.match(/\*\*(\d+(?::\d+)?)\.*\*\*/);
       const superVerse = !hasVerse && line.trim().match(superRe);
       const numberedVerse = !hasVerse && !superVerse && line.match(/^(\d+)\.\s+(.*)/);
 
       if (hasVerse) {
         foundFirstVerse = true;
         // Split line into individual verses (handles paragraph-style: **1** text **2** text)
-        const parts = line.split(/(?=\*\*\d+(?::\d+)?\*\*)/);
+        const parts = line.split(/(?=\*\*\d+(?::\d+)?\.*\*\*)/);
         for (const part of parts) {
-          const vm = part.match(/^\*\*(\d+(?::\d+)?)\*\*\s*(.*)/);
+          const vm = part.match(/^\*\*(\d+(?::\d+)?)\.*\*\*\s*(.*)/);
           if (vm) {
             versesHtml += `<div class="verse"><span class="verse-num">${vm[1]}</span>${formatInlineMarkdown(vm[2].trim())}</div>`;
           } else if (part.trim()) {
@@ -730,7 +730,7 @@
         } else if (trimmed.startsWith('> ')) {
           // Blockquote line — check for inline verse markers
           const bqText = trimmed.slice(2);
-          const bqVerse = bqText.match(/^\*\*(\d+(?::\d+)?)\*\*\s*(.*)/);
+          const bqVerse = bqText.match(/^\*\*(\d+(?::\d+)?)\.*\*\*\s*(.*)/);
           if (bqVerse) {
             versesHtml += `<div class="verse verse-poetry"><span class="verse-num">${bqVerse[1]}</span>${formatInlineMarkdown(bqVerse[2].trim())}</div>`;
           } else {

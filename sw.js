@@ -4,7 +4,7 @@
  * falls back to cache when offline.
  */
 
-const CACHE_NAME = 'ai-bible-v12';
+const CACHE_NAME = 'ai-bible-v13';
 const APP_SHELL = [
   './',
   './index.html',
