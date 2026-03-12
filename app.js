@@ -1181,6 +1181,7 @@
         return;
       }
       textEl.innerHTML = parseGuideMd(data.content);
+      contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (e) {
       textEl.innerHTML = '<p class="not-available">Failed to load guide.</p>';
     }
