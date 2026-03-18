@@ -509,6 +509,16 @@
           var m = line.match(/^- \*\*(.+?):\*\*\s*(.*)/);
           if (m) glanceItems.push({ label: m[1], value: m[2] });
         }
+        if (inGlance && line.startsWith('|') && line.includes('**')) {
+          var cells = line.split('|').map(function(c) { return c.trim(); }).filter(function(c) { return c; });
+          if (cells.length >= 2) {
+            var labelMatch = cells[0].match(/\*\*(.+?)\*\*/);
+            if (labelMatch) {
+              var tVal = cells[1].replace(/\*\*/g, '').trim();
+              if (tVal) glanceItems.push({ label: labelMatch[1], value: tVal });
+            }
+          }
+        }
         if (inHowTo && line.length > 0) {
           howtoLines.push(line);
         }
