@@ -103,6 +103,7 @@
                 <strong>SOPHIA</strong> (Greek: <em>Wisdom</em>) — The arbiter. Reads all three translations, identifies disagreements, and produces a consensus translation that represents the best synthesis of the three approaches.
               </div>
             </div>
+            <p>Beyond the traditional biblical canon, the project also translates texts from the <strong>Deuterocanon</strong> (Tobit, Judith, Wisdom, Sirach, Maccabees), the <strong>Pseudepigrapha</strong> (1 Enoch, Jubilees, Psalms of Solomon), the <strong>Dead Sea Scrolls</strong> (Community Rule, War Scroll, Temple Scroll), and <strong>Early Christian</strong> writings (Didache, Gospel of Thomas, Shepherd of Hermas) — applying the same multi-translator methodology to the broader ancient textual tradition.</p>
           </div>
 
           <div class="about-section">
@@ -149,6 +150,26 @@
         <div id="book-browser-nt" class="book-browser-section">
           <h2 class="testament-title">New Testament</h2>
           <div class="book-cards-grid" id="nt-book-cards"></div>
+        </div>
+        <div id="book-browser-dc" class="book-browser-section">
+          <h2 class="testament-title">Deuterocanon</h2>
+          <p class="section-desc">Books in the Catholic and Orthodox canons — Tobit, Judith, Wisdom, Sirach, Maccabees, and more</p>
+          <div class="book-cards-grid" id="dc-book-cards"></div>
+        </div>
+        <div id="book-browser-ps" class="book-browser-section">
+          <h2 class="testament-title">Pseudepigrapha</h2>
+          <p class="section-desc">Ancient Jewish writings — 1 Enoch, Jubilees, Testaments of the Twelve Patriarchs, and more</p>
+          <div class="book-cards-grid" id="ps-book-cards"></div>
+        </div>
+        <div id="book-browser-dss" class="book-browser-section">
+          <h2 class="testament-title">Dead Sea Scrolls</h2>
+          <p class="section-desc">Sectarian texts from Qumran — Community Rule, War Scroll, Temple Scroll, Pesharim, and more</p>
+          <div class="book-cards-grid" id="dss-book-cards"></div>
+        </div>
+        <div id="book-browser-ec" class="book-browser-section">
+          <h2 class="testament-title">Early Christian</h2>
+          <p class="section-desc">Texts from the first centuries — Didache, Gospel of Thomas, Shepherd of Hermas, and more</p>
+          <div class="book-cards-grid" id="ec-book-cards"></div>
         </div>
         <div id="no-chapters" class="empty-state" style="display:none;">
           <p class="empty-icon">&#x10900;</p>
@@ -337,7 +358,7 @@
     <section id="view-progress" class="view">
       <div class="progress-intro">
         <h2>Translation Progress</h2>
-        <p>Tracking the journey through 1,189 chapters — from Genesis to Revelation.</p>
+        <p>Tracking the journey through the entire biblical and ancient text corpus.</p>
       </div>
       <div id="progress-dashboard">
         <div class="progress-stats">
@@ -346,7 +367,7 @@
             <div class="stat-label">Chapters Complete</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number" id="stat-total">1,189</div>
+            <div class="stat-number" id="stat-total">&mdash;</div>
             <div class="stat-label">Total Chapters</div>
           </div>
           <div class="stat-card">
@@ -358,7 +379,7 @@
           <div class="progress-bar">
             <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
           </div>
-          <div class="progress-bar-label" id="progress-label">0 / 1,189</div>
+          <div class="progress-bar-label" id="progress-label">Loading...</div>
         </div>
         <div id="progress-log">
           <div class="progress-log-header">

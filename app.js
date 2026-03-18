@@ -291,10 +291,21 @@
 
   function renderBookBrowser(chapters) {
     const noChapters = document.getElementById('no-chapters');
-    const otGrid = document.getElementById('ot-book-cards');
-    const ntGrid = document.getElementById('nt-book-cards');
+    const CATEGORIES = [
+      { key: 'OT', gridId: 'ot-book-cards', browserId: 'book-browser-ot' },
+      { key: 'NT', gridId: 'nt-book-cards', browserId: 'book-browser-nt' },
+      { key: 'DC', gridId: 'dc-book-cards', browserId: 'book-browser-dc' },
+      { key: 'PS', gridId: 'ps-book-cards', browserId: 'book-browser-ps' },
+      { key: 'DSS', gridId: 'dss-book-cards', browserId: 'book-browser-dss' },
+      { key: 'EC', gridId: 'ec-book-cards', browserId: 'book-browser-ec' },
+    ];
 
-    if (!otGrid || !ntGrid) {
+    const grids = {};
+    for (var ci = 0; ci < CATEGORIES.length; ci++) {
+      grids[CATEGORIES[ci].key] = document.getElementById(CATEGORIES[ci].gridId);
+    }
+
+    if (!grids['OT'] || !grids['NT']) {
       console.error('Book browser: missing grid elements');
       return;
     }
@@ -352,21 +363,25 @@
       '</div>';
     }
 
-    var otHtml = '';
-    var ntHtml = '';
+    var catHtml = {};
+    for (var ci2 = 0; ci2 < CATEGORIES.length; ci2++) catHtml[CATEGORIES[ci2].key] = '';
+
     var entries = Object.entries(books);
     for (var i = 0; i < entries.length; i++) {
       var bookCode = entries[i][0];
       var book = entries[i][1];
-      if (book.testament === 'OT') otHtml += renderCard(bookCode, book);
-      else ntHtml += renderCard(bookCode, book);
+      var t = book.testament || 'OT';
+      if (catHtml[t] !== undefined) catHtml[t] += renderCard(bookCode, book);
+      else catHtml['OT'] += renderCard(bookCode, book);
     }
 
-    otGrid.innerHTML = otHtml;
-    ntGrid.innerHTML = ntHtml;
-
-    document.getElementById('book-browser-ot').style.display = otHtml ? 'block' : 'none';
-    document.getElementById('book-browser-nt').style.display = ntHtml ? 'block' : 'none';
+    for (var ci3 = 0; ci3 < CATEGORIES.length; ci3++) {
+      var cat = CATEGORIES[ci3];
+      if (grids[cat.key]) {
+        grids[cat.key].innerHTML = catHtml[cat.key];
+        document.getElementById(cat.browserId).style.display = catHtml[cat.key] ? 'block' : 'none';
+      }
+    }
 
     // Click handlers for book cards
     document.querySelectorAll('.book-card').forEach(function(card) {
@@ -552,7 +567,9 @@
     document.getElementById('chapter-selector').style.display = 'none';
     document.getElementById('translation-display').style.display = 'block';
     document.getElementById('chapter-title').textContent = `${ch.book_name} ${ch.chapter}`;
-    document.getElementById('chapter-meta').textContent = `${ch.testament === 'OT' ? 'Old Testament' : 'New Testament'} — ${ch.book_code} ${String(ch.chapter).padStart(3, '0')}`;
+    const TESTAMENT_LABELS = { OT: 'Old Testament', NT: 'New Testament', DC: 'Deuterocanon', PS: 'Pseudepigrapha', DSS: 'Dead Sea Scrolls', EC: 'Early Christian' };
+    const testamentLabel = ch.category || TESTAMENT_LABELS[ch.testament] || ch.testament;
+    document.getElementById('chapter-meta').textContent = `${testamentLabel} — ${ch.book_code} ${String(ch.chapter).padStart(3, '0')}`;
 
     pushState({ view: 'translations', book: ch.book_code, chapter: chapterKey });
 
@@ -920,12 +937,21 @@
       groups[bookCode].chapters.push({ key, chapter: chapNum });
     }
 
-    // Group by testament
-    var otBooks = [];
-    var ntBooks = [];
+    // Group by testament/category
+    var NAV_CATS = [
+      { key: 'OT', label: 'Old Testament' },
+      { key: 'NT', label: 'New Testament' },
+      { key: 'DC', label: 'Deuterocanon' },
+      { key: 'PS', label: 'Pseudepigrapha' },
+      { key: 'DSS', label: 'Dead Sea Scrolls' },
+      { key: 'EC', label: 'Early Christian' },
+    ];
+    var catBooks = {};
+    for (var ci = 0; ci < NAV_CATS.length; ci++) catBooks[NAV_CATS[ci].key] = [];
     for (var bc in groups) {
-      if (groups[bc].testament === 'OT') otBooks.push({ code: bc, group: groups[bc] });
-      else ntBooks.push({ code: bc, group: groups[bc] });
+      var t = groups[bc].testament || 'OT';
+      if (!catBooks[t]) catBooks[t] = [];
+      catBooks[t].push({ code: bc, group: groups[bc] });
     }
 
     function renderSection(title, books) {
@@ -949,7 +975,11 @@
       return h;
     }
 
-    return renderSection('Old Testament', otBooks) + renderSection('New Testament', ntBooks);
+    var html = '';
+    for (var ci2 = 0; ci2 < NAV_CATS.length; ci2++) {
+      html += renderSection(NAV_CATS[ci2].label, catBooks[NAV_CATS[ci2].key]);
+    }
+    return html;
   }
 
   // ---- Lightbox ----
@@ -1133,8 +1163,21 @@
     }
     noGuides.style.display = 'none';
 
-    var ot = guides.filter(function(g) { return g.testament === 'OT'; });
-    var nt = guides.filter(function(g) { return g.testament === 'NT'; });
+    var GUIDE_CATS = [
+      { key: 'OT', label: 'Old Testament' },
+      { key: 'NT', label: 'New Testament' },
+      { key: 'DC', label: 'Deuterocanon' },
+      { key: 'PS', label: 'Pseudepigrapha' },
+      { key: 'DSS', label: 'Dead Sea Scrolls' },
+      { key: 'EC', label: 'Early Christian' },
+    ];
+    var guideCats = {};
+    for (var gci = 0; gci < GUIDE_CATS.length; gci++) guideCats[GUIDE_CATS[gci].key] = [];
+    for (var gi = 0; gi < guides.length; gi++) {
+      var t = guides[gi].testament || 'OT';
+      if (!guideCats[t]) guideCats[t] = [];
+      guideCats[t].push(guides[gi]);
+    }
 
     function renderSection(title, books) {
       if (books.length === 0) return '';
@@ -1154,7 +1197,11 @@
       return h;
     }
 
-    container.innerHTML = renderSection('Old Testament', ot) + renderSection('New Testament', nt);
+    var guideHtml = '';
+    for (var gci2 = 0; gci2 < GUIDE_CATS.length; gci2++) {
+      guideHtml += renderSection(GUIDE_CATS[gci2].label, guideCats[GUIDE_CATS[gci2].key]);
+    }
+    container.innerHTML = guideHtml;
 
     container.querySelectorAll('.guide-nav-btn').forEach(function(btn) {
       btn.addEventListener('click', function() { window._openGuide(btn.dataset.book); });
